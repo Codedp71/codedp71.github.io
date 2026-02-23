@@ -1,0 +1,634 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aerospace Academy & Consultancy - Soar to New Heights in Aerospace</title>
+    <meta name="description" content="Leading aerospace education and consultancy services. Expert drone training, design simulation, industry insights, and professional consultancy support.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'aero-blue': '#1E40AF',
+                        'aero-slate': '#64748B',
+                        'aero-amber': '#F59E0B',
+                        'aero-light': '#F8FAFC',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="font-sans bg-white text-slate-700">
+    
+    <!-- @COMPONENT: Header [Navigation with logo, menu items, and mobile toggle] -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <i class="fas fa-rocket text-aero-blue text-2xl mr-3"></i>
+                    <span class="font-bold text-xl text-aero-blue">AeroAcademy</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#" class="text-aero-blue font-medium hover:text-aero-amber transition duration-200">Home</a>
+                        <div class="relative group">
+                            <a href="#" class="text-slate-600 hover:text-aero-blue flex items-center transition duration-200">
+                                Courses <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                            </a>
+                            <!-- Dropdown would be implemented here -->
+                        </div>
+                        <a href="#" class="text-slate-600 hover:text-aero-blue transition duration-200">Industry Insights</a>
+                        <a href="#" class="text-slate-600 hover:text-aero-blue transition duration-200">Consultancy</a>
+                        <a href="#" class="text-slate-600 hover:text-aero-blue transition duration-200">About Us</a>
+                        <a href="#" class="text-slate-600 hover:text-aero-blue transition duration-200">Contact</a>
+                        <a href="#" class="bg-aero-amber text-white px-4 py-2 rounded-lg font-medium hover:bg-yellow-500 transition duration-200">Get Started</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button class="text-slate-600 hover:text-aero-blue">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- @END_COMPONENT: Header -->
+
+    <!-- @COMPONENT: HeroSection [Main banner with headline, subheadline, CTAs and background image] -->
+    <section class="relative bg-gradient-to-br from-aero-blue via-blue-700 to-blue-900 text-white overflow-hidden">
+        <!-- Background aerospace image overlay -->
+        <!-- A futuristic aerospace facility with drones and aircraft in a hangar setting -->
+        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div style="background-image: url('https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080'); background-size: cover; background-position: center;" class="absolute inset-0 opacity-30"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
+                    Soar to New Heights in <span class="text-aero-amber">Aerospace</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-blue-100 leading-relaxed">
+                    Empowering future aerospace professionals through expert drone training, cutting-edge design simulation, and comprehensive consultancy services
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#courses" class="bg-aero-amber text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-500 transform hover:scale-105 transition duration-300 shadow-lg">
+                        <i class="fas fa-graduation-cap mr-2"></i>Explore Courses
+                    </a>
+                    <a href="#consultancy" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-aero-blue transition duration-300">
+                        <i class="fas fa-handshake mr-2"></i>Get Consultancy Support
+                    </a>
+                </div>
+                
+                <div class="mt-12 flex justify-center space-x-8 text-sm">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-aero-amber" data-bind="stats.students">500+</div>
+                        <div class="text-blue-100">Students Trained</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-aero-amber" data-bind="stats.projects">50+</div>
+                        <div class="text-blue-100">Projects Completed</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-aero-amber" data-bind="stats.experience">10+</div>
+                        <div class="text-blue-100">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: HeroSection -->
+
+    <!-- @COMPONENT: AboutBrief [Short company introduction with mission and values] -->
+    <section class="py-24 bg-aero-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-aero-blue mb-8">Leading Aerospace Education & Consultancy</h2>
+                <p class="text-lg text-slate-600 mb-8 leading-relaxed" data-bind="company.mission">
+                    We are a premier aerospace academy and consultancy firm dedicated to bridging the gap between theoretical knowledge and practical application. Our comprehensive programs combine cutting-edge technology, industry expertise, and hands-on training to prepare the next generation of aerospace professionals.
+                </p>
+                <a href="#about" class="inline-flex items-center text-aero-blue font-semibold hover:text-aero-amber transition duration-200">
+                    Learn More About Us <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: AboutBrief -->
+
+    <!-- @COMPONENT: KeyOfferings [Four main service pillars with descriptions and CTAs] -->
+    <section id="offerings" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-aero-blue mb-4">Our Core Offerings</h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">Comprehensive aerospace education and professional services designed to elevate your career and projects</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Drone Courses -->
+                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
+                    <div class="text-aero-amber text-4xl mb-6">
+                        <i class="fas fa-drone"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-aero-blue mb-4">Drone Courses</h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed">From basics to advanced training covering regulations, components, design principles, and DGCA compliance.</p>
+                    <ul class="text-sm text-slate-500 mb-6 space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>DGCA Guidelines</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Component Analysis</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Design Principles</li>
+                    </ul>
+                    <a href="#courses" class="inline-flex items-center text-aero-blue font-semibold hover:text-aero-amber transition duration-200">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Design & Simulation -->
+                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
+                    <div class="text-aero-amber text-4xl mb-6">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-aero-blue mb-4">Design & Simulation</h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed">Master Ansys, CAD tools, aerodynamics, and propulsion through hands-on simulation projects.</p>
+                    <ul class="text-sm text-slate-500 mb-6 space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Ansys Simulation</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>CAD Modeling</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>CFD Analysis</li>
+                    </ul>
+                    <a href="#courses" class="inline-flex items-center text-aero-blue font-semibold hover:text-aero-amber transition duration-200">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Industry Insights -->
+                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
+                    <div class="text-aero-amber text-4xl mb-6">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-aero-blue mb-4">Industry Insights</h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed">Stay updated with latest news, trends, expert perspectives, and breakthrough technologies.</p>
+                    <ul class="text-sm text-slate-500 mb-6 space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Market Trends</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Tech Innovations</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Expert Analysis</li>
+                    </ul>
+                    <a href="#insights" class="inline-flex items-center text-aero-blue font-semibold hover:text-aero-amber transition duration-200">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Consultancy Services -->
+                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
+                    <div class="text-aero-amber text-4xl mb-6">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-aero-blue mb-4">Consultancy Services</h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed">Professional compliance, analysis, custom training, and project management support.</p>
+                    <ul class="text-sm text-slate-500 mb-6 space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Compliance Support</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Custom Training</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Project Advisory</li>
+                    </ul>
+                    <a href="#consultancy" class="inline-flex items-center text-aero-blue font-semibold hover:text-aero-amber transition duration-200">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: KeyOfferings -->
+
+    <!-- @COMPONENT: WhyChooseUs [Value proposition section with key differentiators] -->
+    <section class="py-24 bg-aero-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-aero-blue mb-4">Why Choose AeroAcademy?</h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">Discover what sets us apart in aerospace education and consultancy</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-user-tie text-aero-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-aero-blue mb-4">Expert Instructors</h3>
+                    <p class="text-slate-600 leading-relaxed">Learn from industry veterans with real-world aerospace experience and deep technical expertise.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-certificate text-aero-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-aero-blue mb-4">Industry-Relevant Curriculum</h3>
+                    <p class="text-slate-600 leading-relaxed">Cutting-edge programs aligned with current industry standards and emerging technologies.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-tools text-aero-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-aero-blue mb-4">Hands-On Training</h3>
+                    <p class="text-slate-600 leading-relaxed">Practical learning approach with real equipment, simulation tools, and project-based assignments.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-clipboard-check text-aero-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-aero-blue mb-4">Consultancy Backing</h3>
+                    <p class="text-slate-600 leading-relaxed">Benefit from our active consultancy projects and real-world case studies in your learning journey.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-lightbulb text-aero-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-aero-blue mb-4">Practical Learning Approach</h3>
+                    <p class="text-slate-600 leading-relaxed">Bridge theory and practice through simulation labs, workshops, and industry collaboration.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-rocket text-aero-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-aero-blue mb-4">Innovation Focus</h3>
+                    <p class="text-slate-600 leading-relaxed">Stay ahead with latest aerospace innovations, emerging technologies, and future trends.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: WhyChooseUs -->
+
+    <!-- @COMPONENT: Testimonials [Client and student feedback with photos and quotes] -->
+    <section class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-aero-blue mb-4">What Our Students & Clients Say</h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">Real experiences from professionals who have transformed their careers with us</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- @MAP: testimonials.map(testimonial => ( -->
+                <div class="bg-white rounded-xl shadow-lg p-8 relative">
+                    <div class="text-aero-amber text-4xl mb-4">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 italic leading-relaxed" data-mock="true">
+                        "The drone design course completely transformed my understanding of aerodynamics. The hands-on Ansys simulations were invaluable for my career transition into aerospace engineering."
+                    </p>
+                    <div class="flex items-center">
+                        <!-- Professional headshot of a young engineer in aerospace setting -->
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100" alt="Student testimonial" class="w-12 h-12 rounded-full mr-4" data-mock-image="true">
+                        <div>
+                            <div class="font-semibold text-aero-blue" data-mock="true">Sarah Johnson</div>
+                            <div class="text-sm text-slate-500" data-mock="true">Aerospace Engineer</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-8 relative">
+                    <div class="text-aero-amber text-4xl mb-4">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 italic leading-relaxed" data-mock="true">
+                        "Their consultancy services helped us achieve DGCA compliance seamlessly. The team's expertise in regulatory requirements is unmatched."
+                    </p>
+                    <div class="flex items-center">
+                        <!-- Professional headshot of a business executive -->
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100" alt="Client testimonial" class="w-12 h-12 rounded-full mr-4" data-mock-image="true">
+                        <div>
+                            <div class="font-semibold text-aero-blue" data-mock="true">Michael Chen</div>
+                            <div class="text-sm text-slate-500" data-mock="true">CTO, Dronetech Solutions</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-8 relative">
+                    <div class="text-aero-amber text-4xl mb-4">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 italic leading-relaxed" data-mock="true">
+                        "The comprehensive curriculum and practical approach gave me the confidence to launch my own aerospace consulting firm. Highly recommended!"
+                    </p>
+                    <div class="flex items-center">
+                        <!-- Professional headshot of a female entrepreneur -->
+                        <img src="https://pixabay.com/get/g7fbe452ac04e40522e3f09718fe70e3f9e216a4be66e0f2d9d1b9b40a951a45fb958bfa0a32a00537677adbf3310499cc38969ff88eace3f7ab2f60da6ae29b3_1280.jpg" alt="Student testimonial" class="w-12 h-12 rounded-full mr-4" data-mock-image="true">
+                        <div>
+                            <div class="font-semibold text-aero-blue" data-mock="true">Elena Rodriguez</div>
+                            <div class="text-sm text-slate-500" data-mock="true">Aerospace Consultant</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Testimonials -->
+
+    <!-- @COMPONENT: LatestNews [Blog preview section with recent articles] -->
+    <section class="py-24 bg-aero-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center mb-16">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-aero-blue mb-4">Latest Industry Insights</h2>
+                    <p class="text-lg text-slate-600">Stay informed with our expert analysis and industry updates</p>
+                </div>
+                <a href="#insights" class="hidden md:inline-flex items-center text-aero-blue font-semibold hover:text-aero-amber transition duration-200">
+                    View All Articles <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- @MAP: articles.map(article => ( -->
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
+                    <!-- Cutting-edge drone technology in a modern testing facility -->
+                    <img src="https://pixabay.com/get/gd89fd89c53497548006db7687cf0df0b26ff2074ae7b29716ecd34aa51a87a7e1b8986dc35418d53214c91ea2dfe4b5e716cb915ec333a30c4070c23649cb156_1280.jpg" alt="Drone technology article" class="w-full h-48 object-cover" data-mock-image="true">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-slate-500 mb-3">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span data-mock="true">December 15, 2024</span>
+                            <span class="mx-2">•</span>
+                            <span class="bg-aero-blue text-white px-2 py-1 rounded text-xs" data-mock="true">Technology</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-aero-blue mb-3 hover:text-aero-amber transition duration-200" data-mock="true">
+                            <a href="#">Latest Advances in Drone Propulsion Systems</a>
+                        </h3>
+                        <p class="text-slate-600 leading-relaxed" data-mock="true">
+                            Exploring breakthrough technologies in electric propulsion and their impact on drone efficiency and performance...
+                        </p>
+                        <a href="#" class="inline-flex items-center text-aero-blue font-medium mt-4 hover:text-aero-amber transition duration-200">
+                            Read More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
+                    <!-- Aerospace engineers working on aircraft design with CAD software -->
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=250" alt="Aerospace design article" class="w-full h-48 object-cover" data-mock-image="true">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-slate-500 mb-3">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span data-mock="true">December 12, 2024</span>
+                            <span class="mx-2">•</span>
+                            <span class="bg-green-500 text-white px-2 py-1 rounded text-xs" data-mock="true">Regulations</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-aero-blue mb-3 hover:text-aero-amber transition duration-200" data-mock="true">
+                            <a href="#">New DGCA Guidelines for Commercial Drone Operations</a>
+                        </h3>
+                        <p class="text-slate-600 leading-relaxed" data-mock="true">
+                            Understanding the latest regulatory changes and their implications for commercial drone operators in India...
+                        </p>
+                        <a href="#" class="inline-flex items-center text-aero-blue font-medium mt-4 hover:text-aero-amber transition duration-200">
+                            Read More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
+                    <!-- Modern aerospace simulation laboratory with multiple computer screens -->
+                    <img src="https://images.unsplash.com/photo-1596815064285-45ed8a9c0463?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=250" alt="Simulation technology article" class="w-full h-48 object-cover" data-mock-image="true">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-slate-500 mb-3">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span data-mock="true">December 10, 2024</span>
+                            <span class="mx-2">•</span>
+                            <span class="bg-purple-500 text-white px-2 py-1 rounded text-xs" data-mock="true">Education</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-aero-blue mb-3 hover:text-aero-amber transition duration-200" data-mock="true">
+                            <a href="#">Mastering CFD Analysis: Essential Skills for Aerospace Engineers</a>
+                        </h3>
+                        <p class="text-slate-600 leading-relaxed" data-mock="true">
+                            A comprehensive guide to computational fluid dynamics and its applications in modern aerospace design...
+                        </p>
+                        <a href="#" class="inline-flex items-center text-aero-blue font-medium mt-4 hover:text-aero-amber transition duration-200">
+                            Read More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+                <!-- @END_MAP )) -->
+            </div>
+            
+            <div class="text-center mt-12 md:hidden">
+                <a href="#insights" class="inline-flex items-center text-aero-blue font-semibold hover:text-aero-amber transition duration-200">
+                    View All Articles <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: LatestNews -->
+
+    <!-- @COMPONENT: ContactBrief [Quick contact section with form and details] -->
+    <section class="py-24 bg-gradient-to-br from-aero-blue to-blue-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Aerospace Journey?</h2>
+                <p class="text-xl text-blue-100 max-w-2xl mx-auto">Get in touch with our experts to discuss your learning goals or consultancy needs</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="space-y-6">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-aero-amber text-xl mr-4"></i>
+                            <div>
+                                <div class="font-semibold">Email Us</div>
+                                <div class="text-blue-100" data-mock="true">info@aeroacademy.com</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-aero-amber text-xl mr-4"></i>
+                            <div>
+                                <div class="font-semibold">Call Us</div>
+                                <div class="text-blue-100" data-mock="true">+91 98765 43210</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-aero-amber text-xl mr-4"></i>
+                            <div>
+                                <div class="font-semibold">Visit Us</div>
+                                <div class="text-blue-100" data-mock="true">Aerospace Hub, Bangalore, India</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 flex space-x-4">
+                        <a href="#" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-3 rounded-lg transition duration-200">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="#" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-3 rounded-lg transition duration-200">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-3 rounded-lg transition duration-200">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                        <a href="#" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-3 rounded-lg transition duration-200">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-8">
+                    <h3 class="text-2xl font-bold mb-6">Quick Inquiry</h3>
+                    <form class="space-y-4">
+                        <!-- @FUNCTIONALITY: Form should validate inputs and send inquiry to backend -->
+                        <div>
+                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-aero-amber focus:border-transparent" data-bind="form.name">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Email Address" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-aero-amber focus:border-transparent" data-bind="form.email">
+                        </div>
+                        <div>
+                            <select class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-white focus:outline-none focus:ring-2 focus:ring-aero-amber focus:border-transparent" data-bind="form.subject">
+                                <option value="" class="text-slate-700">Select Inquiry Type</option>
+                                <option value="courses" class="text-slate-700">Course Information</option>
+                                <option value="consultancy" class="text-slate-700">Consultancy Services</option>
+                                <option value="partnership" class="text-slate-700">Partnership Opportunities</option>
+                                <option value="other" class="text-slate-700">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <textarea placeholder="Your Message" rows="4" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-aero-amber focus:border-transparent resize-none" data-bind="form.message"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-aero-amber text-white py-3 rounded-lg font-semibold hover:bg-yellow-500 transition duration-200" data-event="click:handleInquirySubmit">
+                            Send Inquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ContactBrief -->
+
+    <!-- @COMPONENT: Footer [Site links, contact info, and legal pages] -->
+    <footer class="bg-slate-800 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="md:col-span-1">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-rocket text-aero-amber text-2xl mr-3"></i>
+                        <span class="font-bold text-xl">AeroAcademy</span>
+                    </div>
+                    <p class="text-slate-300 mb-6 leading-relaxed" data-mock="true">
+                        Leading aerospace education and consultancy firm empowering professionals with cutting-edge skills and industry expertise.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-slate-400 hover:text-aero-amber transition duration-200">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-aero-amber transition duration-200">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-aero-amber transition duration-200">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-aero-amber transition duration-200">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="font-bold text-lg mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-slate-300 hover:text-aero-amber transition duration-200">Home</a></li>
+                        <li><a href="#" class="text-slate-300 hover:text-aero-amber transition duration-200">About Us</a></li>
+                        <li><a href="#" class="text-slate-300 hover:text-aero-amber transition duration-200">Courses</a></li>
+                        <li><a href="#" class="text-slate-300 hover:text-aero-amber transition duration-200">Industry Insights</a></li>
+                        <li><a href="#" class="text-slate-300 hover:text-aero-amber transition duration-200">Consultancy</a></li>
+                        <li><a href="#" class="text-slate-300 hover:text-aero-amber transition duration-200">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h3 class="font-bold text-lg mb-6">Our Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-slate-300 hover:text-aero-amber transition duration-200">Drone Training</a></li>
+                        <li><a href="#" class="text-slate-300 hover:text-aero-amber transition duration-200">Design & Simulation</a></li>
+                        <li><a href="#" class="text-slate-300 hover:text-aero-amber transition duration-200">DGCA Compliance</a></li>
+                        <li><a href="#" class="text-slate-300 hover:text-aero-amber transition duration-200">Aerospace Consultancy</a></li>
+                        <li><a href="#" class="text-slate-300 hover:text-aero-amber transition duration-200">Custom Training</a></li>
+                        <li><a href="#" class="text-slate-300 hover:text-aero-amber transition duration-200">Project Advisory</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="font-bold text-lg mb-6">Get in Touch</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-aero-amber mt-1 mr-3"></i>
+                            <div class="text-slate-300" data-mock="true">
+                                Aerospace Hub<br>
+                                Electronic City, Bangalore<br>
+                                Karnataka 560100, India
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-aero-amber mr-3"></i>
+                            <div class="text-slate-300" data-mock="true">+91 98765 43210</div>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-aero-amber mr-3"></i>
+                            <div class="text-slate-300" data-mock="true">info@aeroacademy.com</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-700 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-slate-400 mb-4 md:mb-0" data-mock="true">
+                        &copy; 2024 AeroAcademy. All rights reserved.
+                    </div>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-slate-400 hover:text-aero-amber transition duration-200">Privacy Policy</a>
+                        <a href="#" class="text-slate-400 hover:text-aero-amber transition duration-200">Terms & Conditions</a>
+                        <a href="#" class="text-slate-400 hover:text-aero-amber transition duration-200">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <script>
+        // TODO: Implement mobile navigation toggle
+        // TODO: Implement smooth scrolling for anchor links
+        // TODO: Implement form validation and submission
+        // TODO: Implement testimonial carousel functionality
+        // TODO: Implement lazy loading for images
+        // TODO: Implement contact form submission to backend API
+        
+        (function() {
+            // Simple smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html>

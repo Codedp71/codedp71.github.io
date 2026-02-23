@@ -1,0 +1,17 @@
+# AeroAcademy - Apache URL Rewriting
+
+RewriteEngine On
+
+# Redirect to index.php for clean URLs
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^courses/([0-9]+)$ /course-detail.php?id=$1 [L,QSA]
+RewriteRule ^articles/([0-9]+)$ /article-detail.php?id=$1 [L,QSA]
+
+# Allow direct access to files
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Default to index.php if no file matches
+RewriteRule ^$ /index.php [L]
+
