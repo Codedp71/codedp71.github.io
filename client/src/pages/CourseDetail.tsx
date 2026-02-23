@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import { useRoute, Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -28,46 +27,25 @@ import {
   Phone,
   Mail,
 } from "lucide-react";
-import type { Course } from "@shared/schema";
+// ✅ Use local static data — no API needed
+import { coursesData } from "@/lib/data";
 
 export default function CourseDetail() {
   const [, params] = useRoute("/courses/:id");
   const courseId = params?.id ? parseInt(params.id) : null;
 
-  const { data: course, isLoading, error } = useQuery<Course>({
-    queryKey: ["/api/courses", courseId],
-    enabled: !!courseId,
-  });
+  // ✅ Find course from local data instead of API call
+  const course = coursesData.find((c) => c.id === courseId);
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="animate-pulse">
-            <div className="h-8 bg-slate-200 rounded w-1/4 mb-8"></div>
-            <div className="h-12 bg-slate-200 rounded w-3/4 mb-4"></div>
-            <div className="h-6 bg-slate-200 rounded w-1/2 mb-8"></div>
-            <div className="grid lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2">
-                <div className="h-64 bg-slate-200 rounded"></div>
-              </div>
-              <div>
-                <div className="h-48 bg-slate-200 rounded"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (error || !course) {
+  if (!course) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <BookOpen className="h-16 w-16 text-slate-400 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-slate-600 mb-2">Course Not Found</h2>
-          <p className="text-slate-500 mb-4">The course you're looking for doesn't exist or has been removed.</p>
+          <p className="text-slate-500 mb-4">
+            The course you're looking for doesn't exist or has been removed.
+          </p>
           <Button variant="outline">
             <Link href="/courses" className="flex items-center">
               <ArrowLeft className="mr-2 h-4 w-4" />
@@ -110,21 +88,26 @@ export default function CourseDetail() {
           <div className="flex items-start justify-between mb-6">
             <div className="flex-1">
               <div className="flex items-center gap-4 mb-4">
-                <Badge 
-                  variant="secondary" 
+                <Badge
+                  variant="secondary"
                   className="bg-white/20 text-white border-white/30 capitalize"
                 >
                   {course.category.replace("-", " & ")}
                 </Badge>
                 {course.featured && (
-                  <Badge variant="outline" className="border-amber-400 text-amber-300 bg-amber-400/10">
+                  <Badge
+                    variant="outline"
+                    className="border-amber-400 text-amber-300 bg-amber-400/10"
+                  >
                     <Star className="h-3 w-3 mr-1" />
                     Featured Course
                   </Badge>
                 )}
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-4">{course.title}</h1>
-              <p className="text-xl text-blue-100 leading-relaxed max-w-3xl">{course.description}</p>
+              <p className="text-xl text-blue-100 leading-relaxed max-w-3xl">
+                {course.description}
+              </p>
             </div>
           </div>
 
@@ -175,7 +158,9 @@ export default function CourseDetail() {
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-slate-600 leading-relaxed mb-6">{course.description}</p>
+                      <p className="text-slate-600 leading-relaxed mb-6">
+                        {course.description}
+                      </p>
                       <div className="mb-6">
                         <h4 className="font-semibold text-slate-800 mb-3">Target Audience</h4>
                         <p className="text-slate-600">{course.targetAudience}</p>
@@ -186,12 +171,11 @@ export default function CourseDetail() {
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center">
-                        <CheckCircle className="h-5 w-5 mr-2 text-green-600" />
-                        Learning Outcomes
+                        <CheckCircle className="h-5 w-5 mr-2 text-blue-600" />
+                        What You'll Learn
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-slate-600 mb-4">By the end of this course, you will be able to:</p>
                       <ul className="space-y-3">
                         {course.learningOutcomes?.map((outcome, index) => (
                           <li key={index} className="flex items-start">
@@ -215,7 +199,10 @@ export default function CourseDetail() {
                     <CardContent>
                       <div className="space-y-4">
                         {course.modules?.map((module, index) => (
-                          <div key={index} className="flex items-start p-4 bg-slate-50 rounded-lg">
+                          <div
+                            key={index}
+                            className="flex items-start p-4 bg-slate-50 rounded-lg"
+                          >
                             <div className="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold mr-4 flex-shrink-0">
                               {index + 1}
                             </div>
@@ -242,7 +229,8 @@ export default function CourseDetail() {
                     </CardHeader>
                     <CardContent>
                       <p className="text-slate-600 mb-4">
-                        {course.prerequisites || "No specific prerequisites required. Basic understanding of relevant concepts is helpful."}
+                        {course.prerequisites ||
+                          "No specific prerequisites required. Basic understanding of relevant concepts is helpful."}
                       </p>
                     </CardContent>
                   </Card>
@@ -287,7 +275,9 @@ export default function CourseDetail() {
                         </div>
                       ) : (
                         <div>
-                          <div className="text-2xl font-bold text-blue-600 mb-2">Contact for Price</div>
+                          <div className="text-2xl font-bold text-blue-600 mb-2">
+                            Contact for Price
+                          </div>
                           <div className="text-sm text-slate-500">Custom pricing available</div>
                         </div>
                       )}
@@ -298,7 +288,10 @@ export default function CourseDetail() {
                       Enroll Now
                     </Button>
 
-                    <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white mb-6">
+                    <Button
+                      variant="outline"
+                      className="w-full border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white mb-6"
+                    >
                       <FileText className="mr-2 h-4 w-4" />
                       Download Syllabus
                     </Button>
@@ -307,22 +300,18 @@ export default function CourseDetail() {
 
                     <div className="space-y-4">
                       <h4 className="font-semibold text-slate-800">Course Details</h4>
-                      
                       <div className="flex items-center justify-between">
                         <span className="text-slate-600">Duration</span>
                         <span className="font-medium">{course.duration}</span>
                       </div>
-                      
                       <div className="flex items-center justify-between">
                         <span className="text-slate-600">Format</span>
                         <span className="font-medium capitalize">{course.format}</span>
                       </div>
-                      
                       <div className="flex items-center justify-between">
                         <span className="text-slate-600">Certificate</span>
                         <span className="font-medium">Yes</span>
                       </div>
-                      
                       <div className="flex items-center justify-between">
                         <span className="text-slate-600">Support</span>
                         <span className="font-medium">24/7</span>
@@ -362,9 +351,39 @@ export default function CourseDetail() {
               Expand your skills with these complementary courses
             </p>
           </div>
-          
+
+          {/* Show related courses from same category */}
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {coursesData
+              .filter((c) => c.category === course.category && c.id !== course.id)
+              .map((related) => (
+                <Card key={related.id} className="card-hover border-0 shadow-lg">
+                  <CardContent className="p-6">
+                    <Badge variant="secondary" className="mb-3 capitalize">
+                      {related.category.replace("-", " & ")}
+                    </Badge>
+                    <h3 className="font-bold text-blue-600 mb-2">{related.title}</h3>
+                    <p className="text-sm text-slate-600 mb-4 line-clamp-2">
+                      {related.description}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-blue-600">
+                        {related.price ? `₹${related.price.toLocaleString()}` : "Contact for Price"}
+                      </span>
+                      <Button size="sm" variant="outline">
+                        <Link href={`/courses/${related.id}`}>View</Link>
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+          </div>
+
           <div className="text-center">
-            <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">
+            <Button
+              variant="outline"
+              className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
+            >
               <Link href="/courses" className="flex items-center">
                 <BookOpen className="mr-2 h-4 w-4" />
                 Browse All Courses
