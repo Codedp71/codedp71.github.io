@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Link, useLocation } from "wouter";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -41,13 +40,15 @@ const categoryInfo = {
 };
 
 export default function Courses() {
-  const [location] = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<string>("featured");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
-  // Get category from URL parameters
-  const urlParams = new URLSearchParams(location.split("?")[1] || "");
+  // ✅ FIX: Use window.location.search instead of wouter's useLocation()
+  // wouter only gives pathname, not query string
+  const urlParams = new URLSearchParams(
+    typeof window !== "undefined" ? window.location.search : ""
+  );
   const categoryFromUrl = urlParams.get("category");
 
   const { data: courses, isLoading } = useQuery<Course[]>({
@@ -56,11 +57,14 @@ export default function Courses() {
 
   // Filter and sort courses
   const filteredCourses = courses?.filter((course) => {
-    const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         course.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = selectedCategory === "all" || course.category === selectedCategory;
-    const matchesUrlCategory = !categoryFromUrl || course.category === categoryFromUrl;
-    
+    const matchesSearch =
+      course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      course.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "all" || course.category === selectedCategory;
+    const matchesUrlCategory =
+      !categoryFromUrl || course.category === categoryFromUrl;
+
     return matchesSearch && matchesCategory && matchesUrlCategory;
   }) || [];
 
@@ -79,7 +83,10 @@ export default function Courses() {
   });
 
   const currentCategory = categoryFromUrl || selectedCategory;
-  const categoryData = currentCategory !== "all" ? categoryInfo[currentCategory as keyof typeof categoryInfo] : null;
+  const categoryData =
+    currentCategory !== "all"
+      ? categoryInfo[currentCategory as keyof typeof categoryInfo]
+      : null;
 
   return (
     <div className="min-h-screen">
@@ -91,7 +98,8 @@ export default function Courses() {
               {categoryData?.title || "Aerospace Courses"}
             </h1>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              {categoryData?.description || "Discover our comprehensive range of aerospace courses designed to build expertise and advance your career in the dynamic aerospace industry."}
+              {categoryData?.description ||
+                "Discover our comprehensive range of aerospace courses designed to build expertise and advance your career in the dynamic aerospace industry."}
             </p>
           </div>
         </div>
@@ -111,22 +119,21 @@ export default function Courses() {
                   className="pl-10"
                 />
               </div>
-              
-              {!categoryFromUrl && (
-                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                  <SelectTrigger className="w-full sm:w-48">
-                    <Filter className="h-4 w-4 mr-2" />
-                    <SelectValue placeholder="Category" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Categories</SelectItem>
-                    <SelectItem value="drone">Drone Training</SelectItem>
-                    <SelectItem value="design-simulation">Design & Simulation</SelectItem>
-                  </SelectContent>
-                </Select>
-              )}
+
+              {/* ✅ Always show category filter, not just when no URL category */}
+              <Select value={categoryFromUrl || selectedCategory} onValueChange={setSelectedCategory}>
+                <SelectTrigger className="w-full sm:w-48">
+                  <Filter className="h-4 w-4 mr-2" />
+                  <SelectValue placeholder="Category" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Categories</SelectItem>
+                  <SelectItem value="drone">Drone Training</SelectItem>
+                  <SelectItem value="design-simulation">Design & Simulation</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
-            
+
             <Select value={sortBy} onValueChange={setSortBy}>
               <SelectTrigger className="w-full sm:w-48">
                 <SelectValue placeholder="Sort by" />
@@ -139,7 +146,7 @@ export default function Courses() {
               </SelectContent>
             </Select>
           </div>
-          
+
           {filteredCourses.length > 0 && (
             <div className="mt-4 text-sm text-slate-600">
               Showing {sortedCourses.length} of {courses?.length || 0} courses
@@ -148,38 +155,43 @@ export default function Courses() {
         </div>
       </section>
 
-      {/* Course Categories Overview */}
-      {!categoryFromUrl && (
-        <section className="py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-blue-600 mb-4">Course Categories</h2>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Choose from our specialized training programs designed for different aspects of aerospace engineering
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-8">
-              {Object.entries(categoryInfo).map(([key, info]) => (
-                <Card key={key} className="card-hover border-0 shadow-lg">
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-bold text-blue-600 mb-4">{info.title}</h3>
-                    <p className="text-slate-600 mb-6 leading-relaxed">{info.description}</p>
-                    <Button className="btn-primary">
-                      <Link href={`/courses?category=${key}`} className="flex items-center">
-                        View Courses <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+      {/* ✅ Course Categories Overview — always visible, not hidden by URL */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-blue-600 mb-4">Course Categories</h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Choose from our specialized training programs designed for different aspects of aerospace engineering
+            </p>
           </div>
-        </section>
-      )}
+
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
+            {Object.entries(categoryInfo).map(([key, info]) => (
+              <Card
+                key={key}
+                className={`card-hover border-0 shadow-lg cursor-pointer transition-all ${
+                  (categoryFromUrl || selectedCategory) === key
+                    ? "ring-2 ring-blue-500"
+                    : ""
+                }`}
+              >
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-blue-600 mb-4">{info.title}</h3>
+                  <p className="text-slate-600 mb-6 leading-relaxed">{info.description}</p>
+                  <Button className="btn-primary">
+                    <Link href={`/courses?category=${key}`} className="flex items-center">
+                      View Courses <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Courses Grid */}
-      <section className="py-16">
+      <section className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {isLoading ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -198,10 +210,12 @@ export default function Courses() {
             <div className="text-center py-16">
               <BookOpen className="h-16 w-16 text-slate-400 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-slate-600 mb-2">No courses found</h3>
-              <p className="text-slate-500">Try adjusting your search criteria or browse all courses.</p>
+              <p className="text-slate-500">
+                Try adjusting your search criteria or browse all courses.
+              </p>
               {(searchQuery || selectedCategory !== "all") && (
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   className="mt-4"
                   onClick={() => {
                     setSearchQuery("");
@@ -215,17 +229,23 @@ export default function Courses() {
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {sortedCourses.map((course) => (
-                <Card key={course.id} className="card-hover border-0 shadow-lg overflow-hidden">
+                <Card
+                  key={course.id}
+                  className="card-hover border-0 shadow-lg overflow-hidden"
+                >
                   <CardHeader className="pb-4">
                     <div className="flex items-start justify-between mb-2">
-                      <Badge 
+                      <Badge
                         variant={course.category === "drone" ? "default" : "secondary"}
                         className="capitalize"
                       >
                         {course.category.replace("-", " & ")}
                       </Badge>
                       {course.featured && (
-                        <Badge variant="outline" className="border-amber-500 text-amber-600">
+                        <Badge
+                          variant="outline"
+                          className="border-amber-500 text-amber-600"
+                        >
                           <Star className="h-3 w-3 mr-1" />
                           Featured
                         </Badge>
@@ -235,10 +255,12 @@ export default function Courses() {
                       <Link href={`/courses/${course.id}`}>{course.title}</Link>
                     </CardTitle>
                   </CardHeader>
-                  
+
                   <CardContent className="pt-0">
-                    <p className="text-slate-600 mb-4 leading-relaxed">{course.description}</p>
-                    
+                    <p className="text-slate-600 mb-4 leading-relaxed">
+                      {course.description}
+                    </p>
+
                     <div className="space-y-3 mb-6">
                       <div className="flex items-center text-sm text-slate-500">
                         <Clock className="h-4 w-4 mr-2" />
@@ -246,19 +268,24 @@ export default function Courses() {
                         <Separator orientation="vertical" className="mx-2 h-4" />
                         <span className="capitalize">{course.format}</span>
                       </div>
-                      
+
                       <div className="flex items-center text-sm text-slate-500">
                         <Users className="h-4 w-4 mr-2" />
                         <span>{course.targetAudience}</span>
                       </div>
                     </div>
-                    
+
                     {course.learningOutcomes && (
                       <div className="mb-6">
-                        <h4 className="font-semibold text-sm text-slate-700 mb-2">Key Learning Outcomes:</h4>
+                        <h4 className="font-semibold text-sm text-slate-700 mb-2">
+                          Key Learning Outcomes:
+                        </h4>
                         <ul className="space-y-1">
                           {course.learningOutcomes.slice(0, 3).map((outcome, index) => (
-                            <li key={index} className="flex items-start text-sm text-slate-600">
+                            <li
+                              key={index}
+                              className="flex items-start text-sm text-slate-600"
+                            >
                               <CheckCircle className="h-3 w-3 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                               <span>{outcome}</span>
                             </li>
@@ -266,21 +293,21 @@ export default function Courses() {
                         </ul>
                       </div>
                     )}
-                    
+
                     <Separator className="my-4" />
-                    
+
                     <div className="flex items-center justify-between">
                       {course.price ? (
                         <div className="text-2xl font-bold text-blue-600">
                           ₹{course.price.toLocaleString()}
                         </div>
                       ) : (
-                        <div className="text-lg font-semibold text-slate-600">Contact for Price</div>
+                        <div className="text-lg font-semibold text-slate-600">
+                          Contact for Price
+                        </div>
                       )}
                       <Button className="btn-secondary">
-                        <Link href={`/courses/${course.id}`}>
-                          View Details
-                        </Link>
+                        <Link href={`/courses/${course.id}`}>View Details</Link>
                       </Button>
                     </div>
                   </CardContent>
@@ -294,9 +321,12 @@ export default function Courses() {
       {/* CTA Section */}
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-blue-600 mb-4">Need Help Choosing the Right Course?</h2>
+          <h2 className="text-3xl font-bold text-blue-600 mb-4">
+            Need Help Choosing the Right Course?
+          </h2>
           <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-            Our education consultants can help you select the perfect course based on your career goals and experience level.
+            Our education consultants can help you select the perfect course based on your
+            career goals and experience level.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button className="btn-primary">
@@ -305,7 +335,10 @@ export default function Courses() {
                 Get Course Guidance
               </Link>
             </Button>
-            <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">
+            <Button
+              variant="outline"
+              className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
+            >
               <Link href="/consultancy" className="flex items-center">
                 Request Custom Training <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
