@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import aeroBg from './img/aero.jpg';
 import {
   GraduationCap,
   Settings,
@@ -120,7 +121,7 @@ export default function Home() {
 
   return (
     <div style={{
-      backgroundImage: `url('/src/pages/img/homeimghero1.jpg')`,
+      backgroundImage: `url('/src/pages/img/aero.jpg')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       minHeight: '100vh'
@@ -131,8 +132,7 @@ export default function Home() {
         <div
           className="absolute inset-0 opacity-30"
           style={{
-            backgroundImage:
-              "url('/src/pages/img/aero.jpg')",
+            backgroundImage: `url(${aeroBg})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
