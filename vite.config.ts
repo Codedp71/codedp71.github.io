@@ -27,6 +27,7 @@ export default defineConfig({
     },
   },
   root: path.resolve(__dirname, "client"),
+  base: "/codedp71.github.io/",
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
